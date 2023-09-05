@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useEffect, useState ,useRef} from 'react';
 import './App.css';
+import Header from './components/Header';
+
 
 function App() {
+  const [input,setInput]=useState("");
+  const counter =useRef(0);
+
+  useEffect(()=>{
+    counter.current=counter.current+1;
+  })
+
+  const formHandler=(e)=>{
+    setInput(e.target.value);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+  <Header/>
+  <input value={input} onChange={formHandler}/>
+  <h4>Application has been renderes {counter.current} times</h4>
     </div>
   );
 }
